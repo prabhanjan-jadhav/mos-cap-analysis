@@ -10,7 +10,7 @@ This project analyzes the capacitance-voltage (C-V) characteristics of a MOS cap
 
 - **report.pdf**: Detailed analysis report, including theoretical equations, results, and conclusions.
 - **results.pdf**: Contains all the simulation plots and data.
-- **README.md**: This file, providing an overview of the project.
+- **moscap_data/**: Contains moscap configuration and data of all simulations with different parameters.
 
 ## Simulation Tasks
 
