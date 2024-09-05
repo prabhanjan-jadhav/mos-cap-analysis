@@ -1,0 +1,39 @@
+go atlas
+
+mesh space.mult=1.0
+x.mesh loc=0.00 spac=0.10
+x.mesh loc=1 spac=0.10
+y.mesh loc=0.00 spac=0.10
+y.mesh loc=1 spac=0.10
+
+#
+region number=1 x.min=0 x.max=1 y.min=0 y.max=0.9 material=Silicon
+#
+region number=2 x.min=0 x.max=1 y.min=0.9 y.max=1 material=SiO2
+#
+electrode name=anode number=1 x.min=0 x.max=1 y.min=1 y.max=1
+electrode name=cathode number=2 x.min=0 x.max=1 y.min=0 y.max=0
+# #1=vdd
+doping   p.type conc=1e15 x.min=0  x.max=1 y.min=0 y.max=0.9 uniform
+#
+#
+# #1=vdd #2=cathode
+
+
+#
+contact   name=anode workfunction=4.1
+contact   name=cathode neutral
+#
+models conmob fermi print temperature=300 
+#
+method newton 
+#
+solve init
+
+#
+output j.electron j.hole j.conduc j.total ex.field ey.field flowlines e.mobility h.mobility e.temp h.temp con.band
+save outf=moscap.str
+log   outfile=moscap.log
+solve      vanode=-1  vstep=0.05  vfinal=1  name=anode ac freq=1e6
+tonyplot moscap.log moscap.str
+quit
